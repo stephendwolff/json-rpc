@@ -32,7 +32,7 @@ class JSONRPCAPI(object):
     @property
     def urls(self):
         urls = [
-            path("/", self.jsonrpc, name='endpoint'),
+            path("", self.jsonrpc, name='endpoint'),
         ]
 
         if getattr(settings, 'JSONRPC_MAP_VIEW_ENABLED', settings.DEBUG):
