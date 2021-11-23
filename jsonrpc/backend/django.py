@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
 from django.views.decorators.csrf import csrf_exempt
-from django.conf.urls import url
+from django.urls import path
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseNotAllowed
 import copy
@@ -32,12 +32,12 @@ class JSONRPCAPI(object):
     @property
     def urls(self):
         urls = [
-            url(r'^$', self.jsonrpc, name='endpoint'),
+            path("/", self.jsonrpc, name='endpoint'),
         ]
 
         if getattr(settings, 'JSONRPC_MAP_VIEW_ENABLED', settings.DEBUG):
             urls.append(
-                url(r'^map$', self.jsonrpc_map, name='map')
+                path("~map/", self.jsonrpc_map, name='map')
             )
 
         return urls
